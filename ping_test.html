@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ping Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+        }
+
+        input[type="button"] {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-family: monospace;
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ping Test</h1>
+    <p>Enter a domain or IP address to ping:</p>
+    <input type="text" id="domain" placeholder="e.g., google.com">
+    <input type="button" value="Ping" onclick="runPingTest()">
+    <div id="result"></div>
+
+    <script>
+        function runPingTest() {
+            const domain = document.getElementById('domain').value;
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Pinging...';
+
+            const pingStart = new Date().getTime();
+            
+            fetch(`https://${domain}`, { method: 'HEAD' })
+                .then(response => {
+                    const pingEnd = new Date().getTime();
+                    const pingTime = pingEnd - pingStart;
+                    resultDiv.innerHTML = `Ping to ${domain} was successful. Time: ${pingTime} ms`;
+                })
+                .catch(error => {
+                    resultDiv.innerHTML = `Ping to ${domain} failed. Error: ${error}`;
+                });
+        }
+    </script>
+</body>
+</html>

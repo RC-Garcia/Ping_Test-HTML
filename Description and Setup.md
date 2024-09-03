@@ -24,7 +24,7 @@ The web application allows users to enter a domain or IP address and click a but
 ## Example
 
 1. **Enter**: Enter `google.com` in the input field.
-2. **Ping**: Click the "Ping" button.
+2. **Ping**: Click the `Ping` button.
 3. **Result**: The page will display something like:
 ```sh
 Ping to google.com was successful. Time: 40 ms
